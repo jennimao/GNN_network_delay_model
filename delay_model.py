@@ -1,6 +1,5 @@
 import tensorflow as tf
 
-
 class RouteNet_Fermi(tf.keras.Model):
     def __init__(self):
         super(RouteNet_Fermi, self).__init__()
@@ -9,7 +8,6 @@ class RouteNet_Fermi(tf.keras.Model):
         # All the Hyperparameters can be found in the config.ini file
 
         self.max_num_models = 7
-
         self.num_policies = 4
         self.max_num_queues = 3
 
@@ -115,7 +113,7 @@ class RouteNet_Fermi(tf.keras.Model):
             tf.concat([(queue_size - self.z_score['queue_size'][0]) / self.z_score['queue_size'][1],
                        priority, weight], axis=1))
 
-        # Iterate t times doing the message passing
+        # Custom three-stage message passing 
         for it in range(self.iterations):
             ###################
             #  LINK AND QUEUE #
@@ -159,4 +157,5 @@ class RouteNet_Fermi(tf.keras.Model):
                                          axis=1)
         trans_delay = pkt_size * tf.math.reduce_sum(1 / capacity_gather, axis=1)
 
+        # linear combination of queue and tramission delays 
         return queue_delay + trans_delay
