@@ -1,60 +1,59 @@
-# RouteNet-Fermi
+# Graph Neural Network for Predicting Network Per-Flow Delays on Real-Time Data 
+Jenny Mao CPSC 483 
+Based off variant of RouteNet applied to Real Testbed Traces
 
-This is the official implementation of RouteNet-Fermi, a pioneering GNN architecture designed to model computer 
-networks. RouteNet-Fermi supports complex traffic models, multi-queue scheduling policies, routing policies and 
-can provide accurate estimates in networks not seen in the training phase.
 
-**If you decide to apply the concepts presented or base on the provided code, please do refer our paper.**
+## Installation and Evaluation 
 
+**Recommended: Python 3.7**
+
+You can install all the dependencies by running the following commands.
 ```
-@article{ferriol2022routenet,
-  title={RouteNet-Fermi: Network Modeling with Graph Neural Networks},
-  author={Ferriol-Galm{\'e}s, Miquel and Paillisse, Jordi and Su{\'a}rez-Varela, Jos{\'e} and Rusek, Krzysztof and Xiao, Shihan and Shi, Xiang and Cheng, Xiangle and Barlet-Ros, Pere and Cabellos-Aparicio, Albert},
-  journal={arXiv preprint arXiv:2212.12070},
-  year={2022}
-}
+pip install -r requirements.txt
 ```
 
-## Quick Start
-### Project structure
+## Download the data
+You can download the datasets for this particular experiment here:
+- [Real Traces Dataset](https://bnn.upc.edu/download/dataset-v6-real-traces/)
 
-The project is divided into three main blocks: scheduling, traffic models, and scalability. Each block has its own 
-directory and contains its own files. In each directory we can find four main files:
-- `main.py`: contains the code for the training/validation of the model.
-- `ckpt_dir`: contains the trained models for the specific experiment.
-- `predict.py`: contains the code for the predictions. It automatically loads the best-trained model and 
-saves its predictions in a `predictions.npy` file that can be read using NumPy.
+Otherwise, you can download the datasets using the following command:
+```
+wget -O real_traces.zip https://bnn.upc.edu/download/dataset-v6-real-traces/
+```
 
-The project also contains some auxiliary files like `datanetAPI.py` used to read the different datasets and the 
-`data_generator.py` that is used to convert the samples provided by the dataset API into the graph that is taken as
-input by the model, and a `generate_dataframe.py` which saves the data in a Pandas Dataframe used to compute the scores.
+Note that this dataset is a zip file, so you need to decompress it first. Also, these experiments suppose that the data 
+is in a directory file called `data` located at the root of the repository. If you want to change this, you can change the
+path sent as input to the `input_fn` function.
 
-You can find more information about the reproducibility of the experiments inside each one of the directories 
-([Traffic Models](/traffic_models/README.md), [Scheduling](/scheduling/README.md),  [Scalability](/scalability/README.md),
-[All Mixed](/all_mixed/README.md), [Testbed](/testbed/README.md), [Real Traffic](/real_traffic/README.md), [FatTree](/fat_tree/README.md)).
+## Training and Validation
+If you want to train the model, you can use the following command:
+```
+python main.py
+```
 
-## Main Contributors
-#### M. Ferriol-Galmés, J. Paillisé-Vilanovs, J. Suárez-Varela, P. Barlet-Ros, A. Cabellos-Aparicio.
-
-[Barcelona Neural Networking center](https://bnn.upc.edu/), Universitat Politècnica de Catalunya
-
-#### Do you want to contribute to this open-source project? Please, read our guidelines on [How to contribute](CONTRIBUTING.md)
-
-## License
-See [LICENSE](LICENSE) for full of the license text.
+If everything has been done correctly, you should see the following output:
 
 ```
-Copyright 2023 Universitat Politècnica de Catalunya
+Starting training from scratch...
+Epoch 1/200
+36/4000 [..............................] - ETA: 3:06 - loss: 156.5287
+```
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+The model will train during 50 epochs. You can change this number by changing the `epochs` parameter in the `fit` function.
 
-   http://www.apache.org/licenses/LICENSE-2.0
+Finally, the models will be saved in a `ckp_dir` directory. You can change this path by changing the `ckp_dir` variable. 
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Prediction
+We have already provided the trained models for each one of the experiments. If you want, you can skip the Training and Validation
+part and just use the following command to predict the metrics:
+```
+python predict.py
+```
+This script will, first, load the best model located in the `ckp_dir` directory. Then, it will evaluate the metrics for
+each one of the sample datasets and finally, store the results in a `predictions.npy` file.
+
+Again, if you configured everything correctly, you should see something like this:
+```
+BEST CHECKPOINT FOUND: 44-4.62
+    114/Unknown - 6s 33ms/step - loss: 3.5782
 ```

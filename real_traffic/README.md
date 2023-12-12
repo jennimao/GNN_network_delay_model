@@ -1,16 +1,10 @@
-# How to reproduce the experiments
-This model has been trained to predict the delay. In this directory, you will find the needed files to train/validate and predict the metrics.
-
+This model has been trained to predict the delay. 
 ## Dependencies
 
 **Recommended: Python 3.7**
 
 Please, ensure you use Python 3.7. Otherwise, we do not guarantee the correct installation of dependencies.
 
-You can install all the dependencies by running the following commands.
-```
-pip install -r requirements.txt
-```
 
 ## Download the data
 You can download the datasets for this particular experiment here:
@@ -56,23 +50,4 @@ Again, if you configured everything correctly, you should see something like thi
 ```
 BEST CHECKOINT FOUND: 44-4.62
     114/Unknown - 6s 33ms/step - loss: 3.5782
-```
-
-## License
-See [LICENSE](LICENSE) for full of the license text.
-
-```
-Copyright Copyright 2023 Universitat Politècnica de Catalunya
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 ```

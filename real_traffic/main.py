@@ -58,4 +58,5 @@ model.fit(ds_train,
 ds_test = input_fn(TEST_PATH, shuffle=False)
 ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
 
+# Calculate Mean Absolute Percent Error, Mean Squared Error, Mean Absolute Error, and R^2 
 model.evaluate(ds_test)
