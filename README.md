@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ```
 
 ## Download the data
-You can download the datasets for this particular experiment here:
+You can download the datasets here:
 - [Real Traces Dataset](https://bnn.upc.edu/download/dataset-v6-real-traces/)
 - [FatTree16 Dataset](https://bnn.upc.edu/download/dataset-v6-fat-tree-16/)
 - [FatTree64 Dataset](https://bnn.upc.edu/download/dataset-v6-fat-tree-64/)
