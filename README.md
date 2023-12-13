@@ -3,12 +3,7 @@ Jenny Mao CPSC 483
 
 Using RouteNet-F to predict network per-flow delays on Real Traffic Traces. Based off of work done by the wonderful team: 
 
-@article{ferriol2022routenet,
-  title={RouteNet-Fermi: Network Modeling with Graph Neural Networks},
-  author={Ferriol-Galm{\'e}s, Miquel and Paillisse, Jordi and Su{\'a}rez-Varela, Jos{\'e} and Rusek, Krzysztof and Xiao, Shihan and Shi, Xiang and Cheng, Xiangle and Barlet-Ros, Pere and Cabellos-Aparicio, Albert},
-  journal={arXiv preprint arXiv:2212.12070},
-  year={2022}
-}
+M. Ferriol-Galmés et al., "RouteNet-Fermi: Network Modeling With Graph Neural Networks," in IEEE/ACM Transactions on Networking, doi: 10.1109/TNET.2023.3269983.
 
 
 ## Installation and Evaluation 
